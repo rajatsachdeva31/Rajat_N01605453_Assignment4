@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Workshop Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">Workshop Registration</h2>
+		<a href="#" class="text-blue-600 hover:underline font-medium text-center">Register now while seats are available!</a>
+
+
+        <form th:action="@{/register}" th:object="${registration}" method="post" class="max-w-2xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+    <!-- Global Error Message -->
+    <div th:if="${#fields.hasErrors('*')}" class="bg-red-100 text-red-700 p-3 rounded-md mb-4">
+        <p>Please correct the errors below.</p>
+    </div>
+
+    <table class="w-full">
+        <tr>
+            <td class="py-2"><label class="font-semibold">First Name *</label></td>
+            <td>
+                <input type="text" th:field="*{firstName}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Last Name *</label></td>
+            <td>
+                <input type="text" th:field="*{lastName}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Company/Institution *</label></td>
+            <td>
+                <input type="text" th:field="*{companyInstitution}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('companyInstitution')}" th:errors="*{companyInstitution}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Address *</label></td>
+            <td>
+                <textarea th:field="*{address}" class="border border-gray-300 p-2 w-full rounded-md"></textarea>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">City *</label></td>
+            <td>
+                <input type="text" th:field="*{city}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">State / Province / Region *</label></td>
+            <td>
+                <select th:field="*{state}" class="border border-gray-300 p-2 w-full rounded-md">
+                    <option value="">- Select -</option>
+                    <option value="State1">Delhi</option>
+                    <option value="State2">Ontario</option>
+                </select>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Country *</label></td>
+            <td>
+                <select th:field="*{country}" class="border border-gray-300 p-2 w-full rounded-md">
+                    <option value="">- Select -</option>
+                    <option value="India">India</option>
+                    <option value="Canada">Canada</option>
+                </select>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Email *</label></td>
+            <td>
+                <input type="email" th:field="*{email}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Phone Number *</label></td>
+            <td>
+                <input type="text" th:field="*{phoneNumber}" class="border border-gray-300 p-2 w-full rounded-md"/>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="font-bold text-lg py-3">Lunch</td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Meal Preference</label></td>
+            <td>
+                <select th:field="*{mealPreference}" class="border border-gray-300 p-2 w-full rounded-md">
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Non-Vegetarian">Non-Vegetarian</option>
+                </select>
+                <span class="text-red-600 text-sm" th:if="${#fields.hasErrors('mealPreference')}" th:errors="*{mealPreference}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="font-bold text-lg py-3">Payment Details</td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Payment Mode</label></td>
+            <td>
+                <div class="flex gap-4">
+                    <label><input type="radio" name="paymentMode" value="Cash" th:field="*{paymentMode}" class="mr-2"/> Cash</label>
+                    <label><input type="radio" name="paymentMode" value="Cheque" th:field="*{paymentMode}" class="mr-2"/> Cheque</label>
+                    <label><input type="radio" name="paymentMode" value="Demand Draft" th:field="*{paymentMode}" class="mr-2"/> Demand Draft</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">DD/Cheque No.</label></td>
+            <td><input type="text" th:field="*{chequeNumber}" class="border border-gray-300 p-2 w-full rounded-md"/></td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Drawn On (Bank Name)</label></td>
+            <td><input type="text" th:field="*{bankName}" class="border border-gray-300 p-2 w-full rounded-md"/></td>
+        </tr>
+        <tr>
+            <td class="py-2"><label class="font-semibold">Payable at</label></td>
+            <td><input type="text" th:field="*{payableAt}" class="border border-gray-300 p-2 w-full rounded-md"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center pt-4">
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">Submit</button>
+                <button type="reset" class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 ml-2">Reset</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+    </div>
+
+</body>
+</html>
